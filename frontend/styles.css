@@ -1,0 +1,144 @@
+/*#########################
+   General styles 
+  #########################*/
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.container {
+  display: grid;
+  height: 100dvh;
+  grid-template-columns: 1fr 2fr 1fr;
+}
+
+/*#########################
+   Left side styles 
+  #########################*/
+.left-side {
+  display: flex;
+  background-color: lightgray;
+  justify-content: center;
+}
+
+/*#########################
+   Chat styles 
+  #########################*/
+.chat {
+  display: grid;
+  grid-template-rows: 50px 1fr 90px;
+}
+/* Chat header*/
+.chat-header {
+  display: flex;
+  background-color: #5BDBFF;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Chat body*/
+.chat-body {
+  display: flex;
+  background-color: #ccf3f3;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 8px;
+  height: auto;
+}
+.left-message {
+  display: flex;
+  height: auto;
+  width: 100%;
+  /* background-color: lightsalmon; */
+}
+.left-message .icon {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+.left-message span {
+  display: flex;
+  margin-left: 5px;
+  flex: 1;
+  background-color: #ADC8DB;
+  border-radius: 12px;
+  padding: 5px;
+  padding-left: 12px;
+  align-items: center;
+}
+
+.right-message {
+  display: flex;
+  height: auto;
+  width: 100%;
+  /* background-color: lightsalmon; */
+  direction: rtl;
+  text-align: left;
+}
+.right-message .icon {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+.right-message span {
+  margin-right: 5px;
+  flex: 1;
+  display: flex;
+  background-color: #ADC8DB;
+  border-radius: 12px;
+  padding: 5px;
+  padding-left: 12px;
+  align-items: center;
+  direction: ltr;
+}
+
+/* Chat header*/
+.chat-foot {
+  display: flex;
+  background-color: #5BDBFF;
+  justify-content: center;
+  align-items: center;
+}
+.chat-input {
+  flex: 1;
+  height: 50%;
+  margin: 10px 5px 10px 10px;
+  border: none;
+  outline: none;
+  padding-left: 10px;
+  transition-property: all;
+  transition-duration: .2s;
+  border-radius: 5px;
+  font-size: medium;
+}
+.chat-input:hover{
+  scale: 1.01;
+}
+.chat-input:focus{
+  scale: 1.01;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.chat-submit{
+  width: 60px;
+  height: 50%;
+  text-align: center;
+  margin-right: 10px;
+  border: none;
+  transition-property: all;
+  transition-duration: .1s;
+  border-radius: 5px;
+  font-size: 30px;
+}
+.chat-submit:hover{
+  scale: 1.02;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+/*#########################
+   Right side styles
+  #########################*/
+.right-side {
+  display: flex;
+  background-color: lightgray;
+  justify-content: center;
+}
