@@ -28,6 +28,7 @@
 .chat {
   display: grid;
   grid-template-rows: 50px 1fr 90px;
+  height: 100dvh;
 }
 /* Chat header*/
 .chat-header {
@@ -44,7 +45,7 @@
   flex-direction: column;
   gap: 10px;
   padding: 12px 8px;
-  height: auto;
+  overflow-y: auto;
 }
 .left-message {
   display: flex;

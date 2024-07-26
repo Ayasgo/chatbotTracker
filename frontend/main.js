@@ -68,3 +68,7 @@ function sendMessage() {
     },
   });
 }
+
+
+addLeftMessage("Hi, I hope you're doing well!")
+addRightMessage("right message")
