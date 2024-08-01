@@ -8,24 +8,45 @@ import re
 
 # Create a Blueprint
 main = Blueprint('main', __name__)
-new_session = Session()
+session = None
 
 
 @main.route('/', methods = ['GET', 'POST'])
 def index():
     if request.method == "POST":
-        command = request.form.get('command').lower()
+        command = request.form.get('command').lower().strip()
+        message = ''
 
-        if re.fullmatch('start\s+(\w+)', command):
-            session_name = re.search('start\s+(\w+)', command)
+        if re.fullmatch(r'start\s+(\w+)', command):
+            if session:
+                message = 'You must first end the current session'
+            else :
+                session_name = re.findall(r'start\s+(\w+)', command)[0]
+                start = datetime.now()
+                session = Session( name = session_name, start = start)
+                message = f' The {session_name} session was started successfully !'
 
-    context = {}
+        elif command == 'end':
+            end = datetime.now()
+            session.end = end
+            db.session.add(session)
+            db.session.commit()
+
+            message = f' The {session.name} session was ended successfully !'
+            session = None
+        
+        else:
+            message = "Invalid command"
+            
+
+    context = {
+        'message': message,
+    }
     return render_template('index.html', **context)
 
 @main.route('/add_session')
 def add_session():
-    new_session = Session(name='Morning Session', debut=time(9, 0), fin=time(12, 0))
-    db.session.add(new_session)
+    db.session.add(session)
     db.session.commit()
     return "Session added!"
 
