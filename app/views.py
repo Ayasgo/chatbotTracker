@@ -12,6 +12,7 @@ main = Blueprint('main', __name__)
 session = None
 
 def get_message(command):
+    global session
     message = ''
 
     if re.fullmatch(r'start\s+((\w|_)+)', command):
@@ -70,8 +71,6 @@ def index():
 
 @main.route('/get_command', methods = ['POST'])
 def get_command():
-    global session
-
     if request.method == "POST":
         command = request.form.get('command').lower().strip()
         return get_message(command)
