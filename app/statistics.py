@@ -10,7 +10,7 @@ def get_session_statistics(db, session_name):
     return time
 
 def get_today_statistics(db):
-    today=datetime.now().date()
+    today = datetime.now().date()
     sessions = db.session.query(Session).filter_by(start_date = today)
     d = {}
     for s in sessions:
