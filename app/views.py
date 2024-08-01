@@ -60,6 +60,8 @@ def get_message(command):
     else:
         message = "Invalid command"
 
+    return message
+
 @main.route('/', methods = ['GET', 'POST'])
 def index():            
 

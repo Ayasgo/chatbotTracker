@@ -12,7 +12,12 @@
   height: 100dvh;
   grid-template-columns: 1fr 2fr 1fr;
 }
-
+ul {
+  margin: 10px;
+}
+li{
+ margin-left: 20px;
+}
 /*#########################
    Left side styles 
   #########################*/
