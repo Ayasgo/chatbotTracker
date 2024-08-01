@@ -12,7 +12,13 @@ session = None
 
 
 @main.route('/', methods = ['GET', 'POST'])
-def index():
+def index():            
+
+    context = {}
+    return render_template('index.html', **context)
+
+@main.route('/get_command', methods = ['POST'])
+def get_command():
     if request.method == "POST":
         command = request.form.get('command').lower().strip()
         message = ''
@@ -37,17 +43,7 @@ def index():
         
         else:
             message = "Invalid command"
-            
 
-    context = {
-        'message': message,
-    }
-    return render_template('index.html', **context)
-
-@main.route('/add_session')
-def add_session():
-    db.session.add(session)
-    db.session.commit()
-    return "Session added!"
+        return message
 
 #users = Session.query.all()

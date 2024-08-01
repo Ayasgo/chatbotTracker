@@ -55,13 +55,13 @@ function sendMessage() {
   chatInput.value = "";
 
   $.ajax({
-    url: "/",
+    url: "/get_command",
     method: "POST",
     data: {
       command: chatInputContent,
     },
     success: function (response) {
-      console.log(response);
+      addLeftMessage(response);
     },
     error: function (xhr, status, error) {
       console.log(error);
@@ -71,4 +71,3 @@ function sendMessage() {
 
 
 addLeftMessage("Hi, I hope you're doing well!")
-addRightMessage("right message")

@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(__name__, template_folder= r'..\templates', static_folder= r'..\static')
 
     # Configuration
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'
