@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="ÜTF-8" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
     <title>Time App</title>
   </head>
   <body>
@@ -25,9 +25,11 @@
         right-side : classes ordered by an option <br>like number of hours descend or ascend
       </div>
     </div>
-    
-    <script src="plugins/jquery_3.7.1.min.js"></script>
-    <script src="main.js"></script>
-    <script src="listeners.js"></script>
+    <script>
+      Img_bot_src = "{{ url_for('static', filename='imgs/bot-icon.png') }}"
+      Img_user_src = "{{ url_for('static', filename='imgs/user-icon.png') }}"
+    </script>
+    <script src="{{ url_for('static', filename='plugins/jquery_3.7.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   </body>
 </html>
