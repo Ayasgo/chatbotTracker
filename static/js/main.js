@@ -22,7 +22,7 @@ function addLeftMessage(message) {
   icon.className = "icon";
   icon.alt = "icon";
   icon.src = Img_bot_src;
-  span.textContent = message;
+  span.innerHTML = message;
 
   leftMessage.appendChild(icon);
   leftMessage.appendChild(span);
@@ -39,7 +39,7 @@ function addRightMessage(message) {
   icon.className = "icon";
   icon.alt = "icon";
   icon.src = Img_user_src;
-  span.textContent = message;
+  span.innerHTML = message;
 
   rightMessage.appendChild(icon);
   rightMessage.appendChild(span);
