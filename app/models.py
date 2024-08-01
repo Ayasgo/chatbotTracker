@@ -1,5 +1,5 @@
 from . import db
-import datetime
+from datetime import datetime
 
 class Session(db.Model):
     id = db.Column(db.Integer, primary_key=True)

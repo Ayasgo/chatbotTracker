@@ -1,9 +1,18 @@
 from flask import Blueprint, render_template, request
 from .models import Session, db
-from datetime import datetime
+from datetime import datetime, timedelta
 import re
 
-# commands : start\s+(\w+)    end  show
+# commands : start\s+((\w|_)+)    end  show
+
+def show_statistics(session_name):
+    sessions = db.session.query(Session).filter_by(name='coding')
+
+    time = timedelta()
+    for s in sessions:
+        time+= s.get_time()
+
+    return time
 
 
 # Create a Blueprint
@@ -25,12 +34,12 @@ def get_command():
         command = request.form.get('command').lower().strip()
         message = ''
 
-        if re.fullmatch(r'start\s+(\w+)', command):
+        if re.fullmatch(r'start\s+((\w|_)+)', command):
             if session:
                 message = 'You must first end the current session'
 
             else :
-                session_name = re.findall(r'start\s+(\w+)', command)[0]
+                session_name = re.findall(r'start\s+((\w|_)+)', command)[0]
                 start_date = datetime.now().date()
                 start_time = datetime.now().time()
                 session = Session( name = session_name, 
