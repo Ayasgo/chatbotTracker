@@ -1,18 +1,10 @@
 from flask import Blueprint, render_template, request
 from .models import Session, db
-from datetime import datetime, timedelta
+from .statistics import *
+from datetime import datetime
 import re
 
-# commands : start\s+((\w|_)+)    end  show
-
-def show_statistics(session_name):
-    sessions = db.session.query(Session).filter_by(name='coding')
-
-    time = timedelta()
-    for s in sessions:
-        time+= s.get_time()
-
-    return time
+# commands : start\s+((\w|_)+)  -  end  - stat\s(\w+)
 
 
 # Create a Blueprint
@@ -47,6 +39,25 @@ def get_command():
                                    start_time = start_time)
                 message = f'The "{session_name}" session was started successfully !'
 
+        elif re.fullmatch(r'stat\s(\w+)', command):
+            attribut = re.findall(r'stat\s(\w+)', command)[0]
+            if attribut == 'all':
+                stats = get_all_statistics(db)
+                message = '<ul>'
+                for n,s in stats.items():
+                    message += f'<li>{n} : {s}</li>'
+                message += '</ul>'
+
+            elif attribut == 'today':
+                stats = get_today_statistics(db)
+                message = '<ul>'
+                for n,s in stats.items():
+                    message += f'<li>{n} : {s}</li>'
+                message += '</ul>'
+
+            else:
+                message = get_session_statistics(db, attribut)
+
         elif command == 'end' and session:
             end_date = datetime.now().date()
             end_time = datetime.now().time()
@@ -57,7 +68,7 @@ def get_command():
 
             message = f'The "{session.name}" session was ended successfully !'
             session = None
-        
+
         else:
             message = "Invalid command"
 
