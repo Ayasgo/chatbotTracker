@@ -55,10 +55,10 @@ function sendMessage() {
   chatInput.value = "";
 
   $.ajax({
-    url: "/get_message",
+    url: "/",
     method: "POST",
     data: {
-      message: chatInputContent,
+      command: chatInputContent,
     },
     success: function (response) {
       console.log(response);
