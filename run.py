@@ -17,15 +17,15 @@ def get_today_statistics(db):
     sessions = db.session.query(Session).filter_by(start_date = today)
     d = {}
     for s in sessions:
-        time = str(d.get(s.name, timedelta()) + s.get_time())
-        d[s.name] = time[ :time.rfind('.')]
-    return d
+        time = d.get(s.name, timedelta()) + s.get_time()
+        d[s.name] = time
+    return { k: str(v)[: str(v).rfind('.')] for k,v in d.items()}
 
 def get_all_statistics(db):
     sessions_names = get_sessions_names(db)
     d = {}
     for sn in sessions_names:
-        time = str(get_session_statistics(sn))
+        time = str(get_session_statistics(db, sn))
         d[sn] = time[ :time.rfind('.')]
     return d
 
